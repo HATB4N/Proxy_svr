@@ -1,2 +1,2 @@
 # Proxy_svr
-diy tls proxy
+ECDHE-RSA-AES128-GCM-SHA256
