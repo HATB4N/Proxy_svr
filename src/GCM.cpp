@@ -104,6 +104,7 @@ void GCM::mult_H(uint8_t *v) {
     // NIST SP 800-38D 11p~
     // v *= H in GF(2^128)/x^128+x^7+x^2+x+1
     // read first 16byte from ptr
+    bool lsb;
     uint8_t z[16] = {0};
     for (int i = 0; i< 16; i++) {
         for (int j = 0; j< 8; j++) {
@@ -113,7 +114,7 @@ void GCM::mult_H(uint8_t *v) {
                     z[k] ^= v[k];
                 }
             }
-            bool lsb = v[15] & 0x01;
+            lsb = v[15] & 0x01;
             for(int i = 15; i> 0; i--) {
                 v[i] = (v[i] >> 1) | (v[i - 1] << 7);
             }
