@@ -40,8 +40,7 @@ void SHA256::preprocess(
     }
 }
 
-std::vector<std::array<uint32_t, 16>>
-SHA256::get_blocks(std::vector<uint8_t> v) {
+std::vector<std::array<uint32_t, 16>> SHA256::get_blocks(std::vector<uint8_t> v) {
     const size_t sz = v.size(); // byte수
     std::vector<std::array<uint32_t, 16>> blocks;
     blocks.resize(sz / 64);
