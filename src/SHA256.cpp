@@ -75,3 +75,6 @@ void SHA256::process_block(const std::array<uint32_t, 16> &block) {
     H[0] += a; H[1] += b; H[2] += c; H[3] += d;
     H[4] += e; H[5] += f; H[6] += g; H[7] += h;
 }
+
+// fix:
+// blocks에 저장하지 말고 스트림 방식으로 바로 전달하기
