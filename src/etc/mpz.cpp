@@ -1,4 +1,4 @@
-#include "mpz.h"
+#include "etc/mpz.h"
 
 mpz_class nextprime(mpz_class n) {
     mpz_class r;

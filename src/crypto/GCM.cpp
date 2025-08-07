@@ -2,7 +2,7 @@
 // Created by HATBAN on 25. 7. 31.
 //
 
-#include "GCM.h"
+#include "crypto/GCM.h"
 
 void GCM::iv(const uint8_t *p) {
     memcpy(this->iv_.data(), p, 12);

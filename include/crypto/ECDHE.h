@@ -5,7 +5,7 @@
 #ifndef ECDHE_H
 #define ECDHE_H
 
-#include "mpz.h"
+#include "etc/mpz.h"
 #include <vector>
 
 class ECDHE {

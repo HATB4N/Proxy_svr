@@ -1,4 +1,4 @@
-#include "ECDHE.h"
+#include "crypto/ECDHE.h"
 
 ECDHE::ECDHE(mpz_class a, mpz_class b, mpz_class mod) {
     this->a = a;

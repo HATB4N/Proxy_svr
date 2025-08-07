@@ -2,7 +2,7 @@
 // Created by HATBAN on 25. 7. 17.
 //
 
-#include "SHA256.h"
+#include "crypto/SHA256.h"
 
 std::array<uint8_t, 32> SHA256::hash(const std::vector<uint8_t> &v_input) {
     memcpy(H, INITIAL_H, sizeof INITIAL_H);

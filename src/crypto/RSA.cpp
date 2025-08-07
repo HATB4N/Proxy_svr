@@ -1,4 +1,4 @@
-#include "RSA.h"
+#include "crypto/RSA.h"
 
 RSA::RSA(int key_size) { // gen
     p = random_prime(key_size/2);

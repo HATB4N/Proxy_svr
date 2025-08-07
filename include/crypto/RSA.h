@@ -5,7 +5,7 @@
 #ifndef RSA_H
 #define RSA_H
 
-#include "mpz.h"
+#include "etc/mpz.h"
 #include <math.h>
 
 class RSA {
