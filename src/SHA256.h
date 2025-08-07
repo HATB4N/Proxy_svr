@@ -14,7 +14,7 @@
 class SHA256 {
     // 256bit 고정 길이 해쉬 반환
 public:
-    SHA256(); // big endian 관련 추가
+    SHA256() = default; // big endian 관련 추가
     std::array<uint8_t, 32> hash(const std::vector<uint8_t> &v);
     template <class It>
     std::array<uint8_t, 32> hash(const It begin, const It end) {

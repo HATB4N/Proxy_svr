@@ -12,6 +12,7 @@
 
 class AES { // 16byte 단위 msg를 암호화 함.
 public:
+    AES() = default;
     void key(const uint8_t* key);
     void encrypt(uint8_t *m) const;
     void decrypt(uint8_t *m) const;

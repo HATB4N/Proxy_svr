@@ -33,5 +33,4 @@ private:
     void mult_H(uint8_t *x);
 };
 
-
 #endif // GCM_H

@@ -46,13 +46,13 @@ void AES::inv_shift_row(uint8_t *p) {
 }
 
 void AES::substitute(uint8_t *p) {
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i< 16; i++) {
         p[i] = sbox[p[i]];
     }
 }
 
 void AES::inv_substitute(uint8_t *p) {
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i< 16; i++) {
         p[i] = inv_sbox[p[i]];
     }
 }
@@ -63,7 +63,7 @@ void AES::mix_column(uint8_t *p) {
     };
     uint8_t c[4], d, result[16];
     for (int y = 0; y< 4; y++) for (int x = 0; x< 4; x++) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i< 4; i++) {
             d = p[4 * x + i];
             switch (mix[y][i]) {
                 case 1: c[i] = d; break;
@@ -77,10 +77,12 @@ void AES::mix_column(uint8_t *p) {
 }
 
 void AES::inv_mix_column(uint8_t *p) {
-    static const uint8_t mix[4][4] = { {14, 11, 13, 9}, {9, 14, 11, 13}, {13, 9, 14, 11}, {11, 13, 9, 14} };
+    static const uint8_t mix[4][4] = {
+        {14, 11, 13, 9}, {9, 14, 11, 13}, {13, 9, 14, 11}, {11, 13, 9, 14}
+    };
     uint8_t c[40], d, result[16];
-    for (int y = 0; y < 4; y++) for (int x = 0; x < 4; x++) {
-        for (int i = 0; i < 4; i++) {
+    for (int y = 0; y< 4; y++) for (int x = 0; x< 4; x++) {
+        for (int i = 0; i< 4; i++) {
             d = p[4 * x + i];
             switch (mix[y][i]) {
                 case 9: c[i] = doub(doub(doub(d))) ^ d; break;
@@ -97,18 +99,18 @@ void AES::inv_mix_column(uint8_t *p) {
 void AES::key(const uint8_t *pk) {
     memcpy(schedule_[0], pk, 16);
     uint8_t *p = &schedule_[1][0];
-    for (int i = 1; i < ROUND; i++) {
-        for (int j = 0; j < 3; j++) *(p + j) = *(p + j - 3);
+    for (int i = 1; i< ROUND; i++) {
+        for (int j = 0; j< 3; j++) *(p + j) = *(p + j - 3);
         *(p + 3) = *(p - 4);
-        for (int j = 0; j < 4; j++) *(p + j) = sbox[*(p + j)];
-        for (int j = 0; j < 4; j++, p++) {
+        for (int j = 0; j< 4; j++) *(p + j) = sbox[*(p + j)];
+        for (int j = 0; j< 4; j++, p++) {
             *p ^= rcon[(4 * i / N) - 1][j];
             *p ^= *(p - (4 * N));
         }
-        for (int j = 0; j < 12; j++, p++) *p = *(p - (4 * N)) ^ *(p - 4);
+        for (int j = 0; j< 12; j++, p++) *p = *(p - (4 * N)) ^ *(p - 4);
     }
 }
 
 void AES::add_round_key(uint8_t *p, int round) const {
-    for (int i = 0; i < 16; i++) p[i] ^= schedule_[round][i];
+    for (int i = 0; i< 16; i++) p[i] ^= schedule_[round][i];
 }

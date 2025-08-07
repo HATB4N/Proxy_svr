@@ -109,15 +109,10 @@ void GCM::mult_H(uint8_t *v) {
     for (int i = 0; i< 16; i++) {
         for (int j = 0; j< 8; j++) {
             if(H[i] & 1<<(7 - j)) { 
-                // if (i*8 + j)th bit of H == 1 (extract every single bits & compare)
-                for (int k = 0; k< 16; k++) {
-                    z[k] ^= v[k];
-                }
+                for (int k = 0; k< 16; k++) z[k] ^= v[k];
             }
             lsb = v[15] & 0x01;
-            for(int i = 15; i> 0; i--) {
-                v[i] = (v[i] >> 1) | (v[i - 1] << 7);
-            }
+            for(int k = 15; k> 0; k--) v[i] = (v[i] >> 1) | (v[i - 1] << 7);
             v[0] >>= 1;
             if(lsb) v[0] ^= 0xe1; // 0b11100001
         }

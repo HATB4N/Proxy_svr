@@ -4,8 +4,6 @@
 
 #include "SHA256.h"
 
-SHA256::SHA256() = default;
-
 std::array<uint8_t, 32> SHA256::hash(const std::vector<uint8_t> &v_input) {
     memcpy(H, INITIAL_H, sizeof INITIAL_H);
     std::vector<uint8_t> v = v_input;
@@ -17,7 +15,7 @@ std::array<uint8_t, 32> SHA256::hash(const std::vector<uint8_t> &v_input) {
 
     std::array<uint8_t, 32> hash = {};
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i< 8; i++) {
         hash[i*4] = static_cast<uint8_t>((H[i] >> 24) & 0xFF);
         hash[i*4 + 1] = static_cast<uint8_t>((H[i] >> 16) & 0xFF);
         hash[i*4 + 2] = static_cast<uint8_t>((H[i] >> 8) & 0xFF);
@@ -27,8 +25,7 @@ std::array<uint8_t, 32> SHA256::hash(const std::vector<uint8_t> &v_input) {
     return hash;
 }
 
-void SHA256::preprocess(
-        std::vector<uint8_t> &v) { // 64byte 배수 크기로 만들어서 리턴
+void SHA256::preprocess(std::vector<uint8_t> &v) { // 64byte 배수 크기로 만들어서 리턴
     const size_t sz = static_cast<uint64_t>(v.size()) * 8;
     v.push_back(0x80);
 
@@ -67,7 +64,7 @@ void SHA256::process_block(const std::array<uint32_t, 16> &block) {
     }
     uint32_t a = H[0], b = H[1], c = H[2], d = H[3], e = H[4], f = H[5], g = H[6], h = H[7];
     uint32_t T_1, T_2;
-    for (size_t i = 0; i < 64; i++) {
+    for (size_t i = 0; i< 64; i++) {
         T_1 = h + S_1(e) + ((e & f) ^ (~e & g)) + K[i] + W[i];
         T_2 = S_0(a) + ((a & b) ^ (a & c) ^ (b & c));
         h = g; g = f; f = e; e = d + T_1; d = c; c = b; b = a; a = T_1 + T_2;
